@@ -55,3 +55,7 @@ public:
 All user-defined systems must be registered with a `World` object at run-time.
 
 `std::get<FooComponent*>` can be used to obtain elements of component signatures (std::tuple)
+
+### Features
+
+Custom constructors are supported for user-defined Component and System classes.
