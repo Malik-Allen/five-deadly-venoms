@@ -9,9 +9,7 @@ namespace FiveDeadlyVenoms
 				m_componentCounter( 0 ),
 				m_entityManager( entityManager ),
 				m_systemManager( systemManager )
-	{
-		
-	}
+	{}
 	
 	ComponentManager::~ComponentManager()
 	{
@@ -57,7 +55,6 @@ namespace FiveDeadlyVenoms
 
 	void ComponentManager::RemoveComponent( const Entity& entity, const uint64_t& componentType )
 	{
-
 		// Loop through the components of the same type, the id of the component type is used as the key to a vector of components 
 		Component* component = nullptr;
 		size_t size = m_componentMap[componentType].size();

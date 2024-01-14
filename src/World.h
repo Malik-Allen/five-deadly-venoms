@@ -13,9 +13,6 @@
 
 namespace FiveDeadlyVenoms
 {
-	/*
-	*	
-	*/
 	class World
 	{
 		EntityManager* m_enityManager;
@@ -28,8 +25,6 @@ namespace FiveDeadlyVenoms
 		friend struct Parser;
 
 	public:
-
-		// Constructs ECS system
 		World() :
 			m_enityManager( new FiveDeadlyVenoms::EntityManager() ),
 			m_systemManager( new FiveDeadlyVenoms::SystemManager() ),
@@ -37,13 +32,12 @@ namespace FiveDeadlyVenoms
 		{
 			m_systemManager->SetWorld( this );
 		}
-
-		// Cleans and deletes ecs system
+		
 		~World()
 		{
 			// Each Manager will handle the destruction of their items
 
-			// Systems get deleted first, so when we remove components, they no longer
+			// Systems get deleted first
 			if ( m_systemManager )
 			{
 				delete m_systemManager;
@@ -71,7 +65,7 @@ namespace FiveDeadlyVenoms
 			std::vector<EntityId> createdEntities;
 			EntityId currentEntityId;
 
-			for ( int i = 0; i < numberOfEntities; i++ )
+			for ( int i = 0; i < numberOfEntities; ++i )
 			{
 				currentEntityId = m_enityManager->CreateEntity();
 
@@ -93,7 +87,7 @@ namespace FiveDeadlyVenoms
 		{
 			std::vector<EntityId> createdEntities;
 			EntityId currentEntityId = 0;
-			for ( int i = 0; i < numberOfEntities; i++ )
+			for ( int i = 0; i < numberOfEntities; ++i )
 			{
 				currentEntityId = m_enityManager->CreateEntity();
 
@@ -104,13 +98,9 @@ namespace FiveDeadlyVenoms
 					AddNewComponentToEntity< 0, Components ... >( currentEntityId );
 
 					createdEntities.push_back( currentEntityId );
-
 				}
-
 			}
-
 			return createdEntities;
-
 		}
 
 		// Destroys Entity with the passed EntityId, removing all components in the process
@@ -119,11 +109,6 @@ namespace FiveDeadlyVenoms
 			m_componentManager->RemoveAllComponents( entityId );
 			m_enityManager->MarkEntityForCleanUp( entityId );
 		}
-
-		// GetAllEntitiesWithComponents< ... Components>()
-			// Returns a vector of entity ids, that have the components passed
-
-
 
 		// Adds Component to entity with passed EntityId
 		template<typename T, typename ... Args>
@@ -156,7 +141,7 @@ namespace FiveDeadlyVenoms
 
 		// Deregisters system from system manager
 		template<typename T>
-		void DeregisterSystem()
+		void UnregisterSystem()
 		{
 			m_systemManager->UnregisterSystem<T>();
 		}

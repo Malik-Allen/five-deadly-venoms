@@ -23,20 +23,20 @@ namespace FiveDeadlyVenoms {
 
 		using ComponentTuple = std::tuple< Components* ... >;
 
-	protected:
-
-		// The list of Component Tuples, where each tuple is a set of components owned by the same entity
-		std::vector<ComponentTuple>			m_components;
-
 	public:
-
-		explicit System(uint64_t systemId) : ISystem(systemId) {}
-		virtual ~System() {}
+		explicit System(uint64_t systemId):
+			ISystem(systemId)
+		{}
+		virtual ~System() override = default;
 
 		virtual void Update( float deltaTime ) override {}
 
-	private:
+		std::vector<ComponentTuple>& GetComponents() { return m_components; }
 
+	private:
+		// The list of Component Tuples, where each tuple is a set of components owned by the same entity
+		std::vector<ComponentTuple>			m_components;
+		
 		// If the passed entity's components match this system's signature, the components will be added to this system
 		// If not, then we check to see if any of the entity's components are in the system and remove them
 		virtual void OnEntitySignatureChanged( const Entity& entity ) override final

@@ -32,7 +32,7 @@ namespace FiveDeadlyVenoms
 
 		~SystemManager()
 		{
-			DeregisterAllSystems();
+			UnregisterAllSystems();
 		}
 
 		inline void SetWorld( World* world )
@@ -175,13 +175,10 @@ namespace FiveDeadlyVenoms
 				{
 					break;
 				}
-
 			}
-
 		}
 
-		// Deregisters all systems
-		bool DeregisterAllSystems()
+		bool UnregisterAllSystems()
 		{
 			for( auto* s : m_activeSystems )
 			{

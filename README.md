@@ -29,6 +29,8 @@ public:
 
 Once instantiated the `World` object is responsible for creating entities and adding/removing components from entities at run-time.
 
+All systems should be registered before their components are added to entities.
+
 `Parser<...>` can be used on a `World` object to obtain all entities with the matching `Component` signature, see example below:
 
 `FiveDeadlyVenoms::Parser<AudioComponent, PhysicsComponent>( WorldObject );`
@@ -52,8 +54,4 @@ public:
 ```
 All user-defined systems must be registered with a `World` object at run-time.
 
-### Features
-
-Make Components private in System, GetComponents(); and a templated Get<> call to get specific component
-
-Only allow for unique Components onto Entities
+`std::get<FooComponent*>` can be used to obtain elements of component signatures (std::tuple)

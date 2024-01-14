@@ -76,7 +76,12 @@ namespace FiveDeadlyVenoms
 				return nullptr;
 			}
 
-			// Component Classes can support different constructors, 0 -> n number of paramters in their constructor
+			if(FindComponent<T>(entityId) != nullptr)
+			{
+				return nullptr;	// Component already exists within the entity
+			}
+
+			// Component Classes can support different constructors, 0 -> n number of parameters in their constructor
 			T* component = new T( std::forward<Args>( args ) ... );
 
 			if( component == nullptr )	// Could not create component
@@ -127,7 +132,7 @@ namespace FiveDeadlyVenoms
 			// Loop through the components of the same type, the id of the component type is used as the key to a vector of components 
 			Component* component = nullptr;
 
-			size_t size = m_componentMap[T::ID].size();
+			const size_t size = m_componentMap[T::ID].size();
 			for( size_t i = 0; i < size; i++ )	// Iterator through vector of components from the same type
 			{
 				component = m_componentMap[T::ID][i];
@@ -168,7 +173,7 @@ namespace FiveDeadlyVenoms
 			// Loop through the components of the same type, the id of the component type is used as the key to a vector of components 
 			Component* component = nullptr;
 
-			size_t size = m_componentMap[T::ID].size();
+			const size_t size = m_componentMap[T::ID].size();
 			for( size_t i = 0; i < size; i++ )	// Iterator through vector of components from the same type
 			{
 				component = m_componentMap[T::ID][i];

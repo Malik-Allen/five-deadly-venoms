@@ -14,13 +14,11 @@ template <typename T>
 class ObjectPool
 {
 public:
-
-	ObjectPool()
-	{};
+	ObjectPool() = default;
 
 	~ObjectPool()
 	{
-		size_t poolSize = objects.size();
+		const size_t poolSize = objects.size();
 		for( size_t i = 0; i < poolSize; ++i )
 		{
 			if( objects[i] != nullptr )
@@ -70,7 +68,7 @@ public:
 	T* GetObject()
 	{
 		T* object = nullptr;
-		if( objects.size() == 0 )
+		if(objects.empty())
 		{
 			return object;
 		}
@@ -90,11 +88,14 @@ public:
 			return;
 		}
 
-		//if( objectsTaken[object] != 0 )
-		//{
-		//	objects.push_back( object );
-		//	objectsTaken.erase( object );
-		//}
+		for(const auto* obj : objects)
+		{
+			if( obj == object )
+			{
+				return;
+			}
+		}
+		objects.push_back(object);
 	}
 
 private:

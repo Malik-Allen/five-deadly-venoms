@@ -25,8 +25,12 @@ namespace FiveDeadlyVenoms {
 
 	public:
 
-		explicit ISystem(uint64_t systemID) : m_systemManagerId(0), m_systemId(systemID), m_world(nullptr) {}
-		virtual ~ISystem() {}
+		explicit ISystem(uint64_t systemID):
+			m_systemManagerId(0),
+			m_systemId(systemID),
+			m_world(nullptr)
+		{};
+		virtual ~ISystem() = default;
 
 		virtual void Update(float deltaTime) = 0;
 
