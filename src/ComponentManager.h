@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2022 Malik Allen
+// MIT License, Copyright (c) 2019 Malik Allen
 
 #ifndef COMPONENTMANAGER_H
 #define COMPONENTMANAGER_H

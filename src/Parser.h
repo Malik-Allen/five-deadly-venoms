@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2022 Malik Allen
+// MIT License, Copyright (c) 2019 Malik Allen
 
 #ifndef PARSER_H
 #define PARSER_H

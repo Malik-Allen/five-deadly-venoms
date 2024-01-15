@@ -1,4 +1,4 @@
-// MIT License, Copyright (c) 2022 Malik Allen
+// MIT License, Copyright (c) 2019 Malik Allen
 
 #ifndef ECS_DEFINITIONS_H
 #define ECS_DEFINITIONS_H
